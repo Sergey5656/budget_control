@@ -16,7 +16,7 @@ export class Transaction {
     amount: number
 
     @CreateDateColumn()
-    createAt: Date
+    createdAt: Date
 
     @UpdateDateColumn()
     updatedAt: Date
@@ -26,7 +26,7 @@ export class Transaction {
     @JoinColumn({ name: 'user_id' })
     user: User
 
-    @ManyToOne(() => Category, (category) => category.transactions)
+    @ManyToOne(() => Category, (category) => category.transactions, {onDelete: 'SET NULL'})
     @JoinColumn({ name: 'category_id' })
     category: Category
 

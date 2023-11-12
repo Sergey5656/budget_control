@@ -33,8 +33,11 @@ export class TransactionService {
       where: {
         user: { id },
       },
+      relations:{
+        category: true
+      },
       order: {
-        createAt: 'DESC',
+        createdAt: 'DESC',
       }
     })
     return transactions;
@@ -76,14 +79,14 @@ export class TransactionService {
   async findAllWithPagination(id: number, page: number, limit: number) {
     const transactions = await this.transactionRepository.find({
       where: {
-        id,
+        user: {id},
       },
-      relations: {
-        category: true,
-        user: true,
-      },
+      // relations: {
+      //   category: true,
+      //   user: true,
+      // },
       order: {
-        createAt: 'DESC',
+        createdAt: 'DESC',
       },
       take: limit,
       skip: (page - 1) * limit
@@ -102,5 +105,7 @@ export class TransactionService {
     const total = transactions.reduce((acc, obj) => acc + obj.amount, 0)
     return total
   }
+
+
 
 }

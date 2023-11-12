@@ -7,13 +7,7 @@ import { AuthorGuard } from 'src/guard/author.guard';
 
 @Controller('transactions')
 export class TransactionController {
-
   constructor(private readonly transactionService: TransactionService) { }
-  @Get('pagination')
-  @UseGuards(JwtAuthGuard)
-  findAllWithPagination(@Req() req, @Query('page') page: number, @Query('limit') limit: number) {
-    return this.transactionService.findAllWithPagination(+req.user.id, +page, +limit)
-  }
 
   @Post()
   @UseGuards(JwtAuthGuard)
@@ -21,6 +15,16 @@ export class TransactionController {
   create(@Body() createTransactionDto: CreateTransactionDto, @Req() req) {
     return this.transactionService.create(createTransactionDto, +req.user.id);
   }
+  @Get('pagination')
+  @UseGuards(JwtAuthGuard)
+  findAllWithPagination(@Req() req, @Query('page') page: number = 1, @Query('limit') limit: number = 3 ) {
+    return this.transactionService.findAllWithPagination(+req.user.id, +page, +limit)
+  }
+  @Get(':type/find')
+  @UseGuards(JwtAuthGuard)
+  findAllByType(@Req() req, @Param('type') type:string){
+    return this.transactionService.findAllByType(+req.user.id, type)
+}
 
   @Get()
   @UseGuards(JwtAuthGuard)
