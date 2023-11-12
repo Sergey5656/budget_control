@@ -37,6 +37,7 @@ export class CategoryService {
       relations: {
 
         transactions: true,
+        //sdasdasdsa
       },
     })
   }
