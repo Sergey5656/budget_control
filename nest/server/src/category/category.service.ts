@@ -24,7 +24,7 @@ export class CategoryService {
         id,
       },
     }
-
+console.log(newCategory)
     return await this.categoryRepository.save(newCategory);
   }
 

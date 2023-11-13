@@ -13,6 +13,7 @@ export class TransactionController {
   @UseGuards(JwtAuthGuard)
   @UsePipes(new ValidationPipe())
   create(@Body() createTransactionDto: CreateTransactionDto, @Req() req) {
+    console.log(123)
     return this.transactionService.create(createTransactionDto, +req.user.id);
   }
   @Get('pagination')

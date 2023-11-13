@@ -21,6 +21,7 @@ export class TransactionService {
       category: { id: +createTransactionDto.category },
       user: { id: id },
     }
+    console.log(newTransaction)
 
     if (!newTransaction)
       throw new BadRequestException('Что-то пошло не так')

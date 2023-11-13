@@ -10,9 +10,10 @@ export class CategoryController {
   constructor(private readonly categoryService: CategoryService) { }
 
   @Post()
-  @UseGuards(JwtAuthGuard)
+ @UseGuards(JwtAuthGuard)
   @UsePipes(new ValidationPipe())
   create(@Body() createCategoryDto: CreateCategoryDto, @Req() req) {
+    console.log()
     return this.categoryService.create(createCategoryDto, +req.user.id)
   }
 
