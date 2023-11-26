@@ -13,9 +13,7 @@ export const categoriesAction = async ({request}: any) => {
             const title = {
                 title: formData.get('title'),
             }
-            console.log(1)
             await instance.post('/categories', title)
-            console.log(2)
             return null
         }
         case "PATCH": {
